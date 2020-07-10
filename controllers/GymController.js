@@ -20,6 +20,9 @@ const Gym = require('../models/gym');
 const User = require('../models/User');
 
 const exercises = Gym.schema.paths.Exercise.enumValues;
+const weights = Gym.schema.paths.Weight.enumValues;
+const reps = Gym.schema.paths.Repetitions.enumValues;
+
 exports.index = async (req, res) => {
   try {
     const gym = await Gym
@@ -28,9 +31,11 @@ exports.index = async (req, res) => {
       .sort({ updatedAt: 'desc' });
 
     res.render(`${viewPath}/index`, {
-      pageTitle: 'Archive',
+      pageTitle: 'Gym',
       gym,
-      exercises
+      exercises,
+      weights,
+      reps
     });
   } catch (error) {
     req.flash('danger', `There was an error: ${error}`);
@@ -46,7 +51,9 @@ exports.show = async (req, res) => {
     res.render(`${viewPath}/show`, {
       pageTitle: gym.title,
       gym,
-      exercises
+      exercises,
+      weights,
+      reps
     });
   } catch (error) {
     req.flash('danger', `There was an error: ${error}`);
@@ -57,7 +64,9 @@ exports.show = async (req, res) => {
 exports.new = (req, res) => {
   res.render(`${viewPath}/new`, {
     pageTitle: 'New Fitness',
-    exercises
+    exercises,
+    weights,
+    reps
   });
 };
 
@@ -82,7 +91,9 @@ exports.edit = async (req, res) => {
     res.render(`${viewPath}/edit`, {
       pageTitle: gym.title,
       formData: gym,
-      exercises
+      exercises,
+      weights,
+      reps
     });
   } catch (error) {
     req.flash('danger', `There was an error accessing this athelete: ${error}`);

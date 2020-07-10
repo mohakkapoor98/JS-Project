@@ -24,14 +24,17 @@ const GymSchema = new mongoose.Schema({
   Exercise: {
     type: String,
     enum: ['Bicep-Curl', 'Deadlifts', 'Overhead-press', 'Bench-press', 'Tricep-dips', 'Squats', 'Pull-ups', 'Push-ups'],
+    default: 'Bicep-Curl'
   },
   Weight: {
-    type: Number,
+    type: String,
     enum: ['5', '10', '20', '30', '40', '50', '80', '100'],
+    default: '5'
   },
   Repetitions: {
-    type: Number,
+    type: String,
     enum: ['5', '10', '15', '20'],
+    default: '5'
   }
 }, {
   timestamps: true
